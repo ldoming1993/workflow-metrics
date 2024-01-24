@@ -94,11 +94,11 @@ for workflow_name in workflow_names:
         # Evaluate the average duration
         average_duration = statistics.mean(duration_data)
         average_duration = average_duration / 60
-        average_duration = f'{average_duration:.2f}'
+        average_duration = f'{average_duration:.2f} minutes'
         # Evaluate the median duration
         median_duration = statistics.median(duration_data)
         median_duration = median_duration / 60
-        median_duration = f'{median_duration:.2f}'
+        median_duration = f'{median_duration:.2f} minutes'
         # Evaluate the percentage of successful or skipped runs
         success_rate = f'{statistics.mean([1 if run["conclusion"] in ["success", "skipped"] else 0 for run in runs_filtered]) * 100:.2f}%'
     else:
