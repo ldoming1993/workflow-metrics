@@ -1,9 +1,9 @@
 name: Workflow Metrics
-author: kittychiu
+author: ldoming1993
 description: Generate metrics for historical workflow runs
 runs:
   using: 'docker'
-  image: 'docker://ghcr.io/kittychiu/workflow-metrics:v1'
+  image: 'docker://ghcr.io/ldoming1993/workflow-metrics:v1'
 branding:
   icon: 'rss'
   color: 'orange'
