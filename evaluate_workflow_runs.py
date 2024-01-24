@@ -71,7 +71,7 @@ with open(WORKFLOW_NAMES_FILE, 'r') as f:
 
 # Output the results to a CSV file
 with open(STATS_FILE, 'w') as f:
-    f.write('workflow_name,average_duration,median_duration,success_rate,total_runs\n')
+    f.write('workflow_name,average_duration[minutes],median_duration[minutes],success_rate[percentage],total_runs\n')
 
 # Evaluate the stats for each workflow
 for workflow_name in workflow_names:
@@ -92,11 +92,13 @@ for workflow_name in workflow_names:
 
     if total_runs > 0:
         # Evaluate the average duration
-        average_duration = f'{statistics.mean(duration_data):.2f}'
-        average_duration = str(datetime.timedelta(seconds=int(average_duration)))
+        average_duration = statistics.mean(duration_data)
+        average_duration = average_duration / 60
+        average_duration = f'{average_duration:.2f}'
         # Evaluate the median duration
-        median_duration = f'{statistics.median(duration_data):.2f}'
-        median_duration = str(datetime.timedelta(seconds=int(median_duration)))
+        median_duration = statistics.median(duration_data)
+        median_duration = median_duration / 60
+        median_duration = f'{median_duration:.2f}'
         # Evaluate the percentage of successful or skipped runs
         success_rate = f'{statistics.mean([1 if run["conclusion"] in ["success", "skipped"] else 0 for run in runs_filtered]) * 100:.2f}%'
     else:
