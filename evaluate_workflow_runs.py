@@ -46,6 +46,7 @@ Note:
 import os
 import json
 import statistics
+import datetime
 
 WORKFLOW_NAMES_FILE = 'workflow-names.txt'
 RUNS_FILE = 'runs.json'
@@ -92,10 +93,12 @@ for workflow_name in workflow_names:
     if total_runs > 0:
         # Evaluate the average duration
         average_duration = f'{statistics.mean(duration_data):.2f}'
+        average_duration = str(datetime.timedelta(seconds=int(average_duration)))
         # Evaluate the median duration
         median_duration = f'{statistics.median(duration_data):.2f}'
+        median_duration = str(datetime.timedelta(seconds=int(median_duration)))
         # Evaluate the percentage of successful or skipped runs
-        success_rate = f'{statistics.mean([1 if run["conclusion"] in ["success", "skipped"] else 0 for run in runs_filtered]) * 100:.2f}'
+        success_rate = f'{statistics.mean([1 if run["conclusion"] in ["success", "skipped"] else 0 for run in runs_filtered]) * 100:.2f}%'
     else:
         average_duration = '0.00'
         median_duration = '0.00'
