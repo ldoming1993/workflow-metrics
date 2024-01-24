@@ -71,7 +71,7 @@ with open(WORKFLOW_NAMES_FILE, 'r') as f:
 
 # Output the results to a CSV file
 with open(STATS_FILE, 'w') as f:
-    f.write('workflow_name,average_duration[minutes],median_duration[minutes],success_rate[percentage],total_runs\n')
+    f.write('workflow_name,average_duration,median_duration,success_rate,total_runs\n')
 
 # Evaluate the stats for each workflow
 for workflow_name in workflow_names:
